@@ -1,6 +1,6 @@
 # Impostores con Mountebank
 
-Con el fin de simular el comportamiento de las APIs Users y Items (descritas en el enunciado), se utiliza la herramienta [Mountebank][skill-mountebank-url] la cual,  a través de impostores, permite simular las características de "Legacy" y aislamiento que se solicitan en el ejercicio.
+Con el fin de simular el comportamiento de las APIs Users y Items (descritas en el enunciado), se utiliza la herramienta [Mountebank](https://www.mbtest.org/docs/gettingStarted) la cual,  a través de impostores, permite simular las características de "Legacy" y aislamiento que se solicitan en el ejercicio.
 Se crea un archivo tipo bash, que lanza el contenedor con Mountebank desplegado localmente en el puerto 2525.
 - Se asume que los APIs de Users y Items responden con un statusCode 201 cuando se hace un POST y se crea la entidad exitosamente.
 - Se asume que los APIs de Users y Items en la invocación de los otros métodos (GET, PUT, DELETE) se responden un statusCode 200 con el detalle del resultado de la operación.
