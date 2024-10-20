@@ -1,0 +1,2 @@
+# notificacionesExternas
+Ejercicio de arquitectura
