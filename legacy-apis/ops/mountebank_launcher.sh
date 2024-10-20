@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#colima start
+docker pull bbyars/mountebank:2.9.1
+docker run --rm -d -p 2525:2525 -p 4545:4545 -p 5555:5555 bbyars/mountebank:2.9.1 start
+sleep 3;
+curl -i -X POST -H 'Content-Type: application/json' http://localhost:2525/imposters --data '{"port":4545,"protocol":"http","defaultResponse":{"statusCode":400,"body":"Bad Request","headers":{}},"stubs":[{"responses":[{"is":{"statusCode":201,"headers":{"Content-Type":"application/json"},"body":{"userId":"0a38296474c2","name":"John Doe"}}}],"predicates":[{"deepEquals":{"method":"POST","path":"/user"}}]},{"responses":[{"is":{"statusCode":200,"headers":{"Content-Type":"application/json"},"body":{"userId":"0a38296474c2","name":"John Doe"}}}],"predicates":[{"or":[{"deepEquals":{"method":"GET","path":"/user"}},{"deepEquals":{"method":"PUT","path":"/user"}},{"deepEquals":{"method":"DELETE","path":"/user"}}]}]}]}'
+curl -i -X POST -H 'Content-Type: application/json' http://localhost:2525/imposters --data '{"port":5555,"protocol":"http","defaultResponse":{"statusCode":400,"body":"Bad Request","headers":{}},"stubs":[{"responses":[{"is":{"statusCode":201,"headers":{"Content-Type":"application/json"},"body":{"itemId":"0a38296474c2","name":"itemName"}}}],"predicates":[{"deepEquals":{"method":"POST","path":"/item"}}]},{"responses":[{"is":{"statusCode":200,"headers":{"Content-Type":"application/json"},"body":{"itemId":"0a38296474c2","name":"itemName"}}}],"predicates":[{"or":[{"deepEquals":{"method":"GET","path":"/item"}},{"deepEquals":{"method":"PUT","path":"/item"}},{"deepEquals":{"method":"DELETE","path":"/item"}}]}]}]}'
