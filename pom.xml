@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- ........................................................................................................... -->
+    <!-- Parent Metadata -->
+    <!-- ........................................................................................................... -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.2</version>
+        <relativePath/>
+    </parent>
+    <!-- ........................................................................................................... -->
+    <!-- Project metadata -->
+    <!-- ........................................................................................................... -->
+
+    <groupId>com.meli</groupId>
+    <artifactId>external_notifier</artifactId>
+    <packaging>pom</packaging>
+    <version>${revision}</version>
+    <!-- ........................................................................................................... -->
+    <!-- Project properties -->
+    <!-- ........................................................................................................... -->
+
+    <properties>
+        <!-- project version -->
+        <revision>1.0.0-RC1</revision>
+        <java.version>17</java.version>
+        <spring.boot.version>3.3.4</spring.boot.version>
+        <h2.version>2.3.232</h2.version>
+        <gson.version>2.11.0</gson.version>
+        <junit.version>4.13.2</junit.version>
+    </properties>
+    <!-- ........................................................................................................... -->
+    <!-- Project modules -->
+    <!-- ........................................................................................................... -->
+    <modules>
+        <module>legacy_apis</module>
+    </modules>
+
+</project>
