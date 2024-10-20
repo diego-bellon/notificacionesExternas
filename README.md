@@ -24,3 +24,39 @@ MercadoLibre tiene dos APIs, la API de ítems y la API de usuarios. Son independ
 - Código en repositorio de las aplicaciones planteadas para el sistema **(adicional)**
 - Solución planteada desplegado en cloud **(adicional)**
 ---
+> [!TIP]
+> En este archivo README encontrará texto entre comillas ("text") generalemnte hace referencia a términos que el autor decidió no traducir con el fin de conservar su significado dentro de la industria de TI.
+
+# Contribuir al proyecto Notificaciones Externas
+
+Se quiere que contribuir a este proyecto sea lo más fácil y transparente posible.
+
+### Pull Requests
+La estrategia de "branching" que se usa en el proytecto es gitflow. Gitflow es un "branching model" alternativo en Git que implica el uso de ramas de características y múltiples ramas principales. Más información en [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow#:~:text=Gitflow%20is%20a%20legacy%20Git,software%20development%20and%20DevOps%20practices.)
+
+### Conventional commits
+
+Este repositorio utiliza la especificación "Conventional commits" [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary).
+
+El commit debe tener un título que siga la siguiente especificación.
+
+- `fix: ` prefijo en el título que indica que el PR es un "bug fix" y se debe generar un "PATCH".
+- `feat: ` prefijo en el título que indica que el PR es una característica o "feature" y un "MINOR release" debe ser generado.
+- `docs: ` prefijo en el título que indica que el PR está relacionado únicamente con documentación y no es necessario generar un nuevo "release".
+- `chore: ` prefijo en el título que indica que el PR está relacionado únicamente a limpiar el proyecto y no es necesario generar un nuevo "release".
+- `test: ` prefijo en el título que indica que el PR está relacionado únicamente con pruebas y no es necesario generar un nuevo "release".
+- `refactor: ` prefijo en el título que indica que el PR está relacionado únicamente con "refactoring"y no es necesario generar un nuevo release.
+
+Qué pasa con los "MAJOR release"? se debe agregar `!` al prefijo, algo como `fix!: ` o `refactor!: `
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://shields.io/ -->
+
+[skill-cloudformation-shield]: https://img.shields.io/badge/Cloudformation-2010.09.09-blue
+[skill-cloudformation-url]: https://aws.amazon.com/cloudformation/
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://shields.io/ -->
+
+[skill-mountebank-shield]: https://img.shields.io/badge/mountebank-2.9.1-blue
+[skill-mountebank-url]: https://www.mbtest.org/docs/gettingStarted
