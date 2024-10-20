@@ -24,13 +24,27 @@ MercadoLibre tiene dos APIs, la API de ítems y la API de usuarios. Son independ
 - Código en repositorio de las aplicaciones planteadas para el sistema **(adicional)**
 - Solución planteada desplegado en cloud **(adicional)**
 ---
-[![Mountebank][skill-mountebank-shield]][skill-mountebank-url]
+## Información del proyecto
 [![Gitflow][skill-gitflow-shield]][skill-gitflow-url]
 [![ConventionalCommits][skill-conventionalcommits-shield]][skill-conventionalcommits-url]
+
 > [!TIP]
 > En este archivo README encontrará texto entre comillas ("text") generalemnte hace referencia a términos que el autor decidió no traducir con el fin de conservar su significado dentro de la industria de TI.
 
-# Contribuir al proyecto Notificaciones Externas
+### Estructura del proyecto
+
+En esta sección se describe la estructura del proyecto, así como el contenido de las carpetas principales.
+
+    ├── docs                            <- Archivos usandos en README.md
+    ├── legacy_apis                     <- Impostores que simulan las APIs de Users, Items
+    │   ├── ops                         <- Imágenes docker que permiten lanzar los impostores     
+    │   │   ├── database_scripts        <- DetectID custom SQL scripts for populate database
+    │   │   └── playbooks               <- Ansible playbooks for automate DetectID Database installation 
+    │   └── server                      <- DetectID server resources for build DID server docker image
+    │       └── playbooks               <- Ansible playbooks for automate DetectID server installation
+    └── VaultBank                       <- VaultBank resources
+
+## Contribuir al proyecto Notificaciones Externas
 
 Se quiere que contribuir a este proyecto sea lo más fácil y transparente posible.
 
@@ -52,15 +66,110 @@ El "commit" debe tener un título que siga la siguiente especificación.
 
 Qué pasa con los "MAJOR release"? se debe agregar `!` al prefijo, algo como `fix!: ` o `refactor!: `
 
+---
+## APIs Legacy
+[![Mountebank][skill-mountebank-shield]][skill-mountebank-url]
+[![Colima][skill-colima-shield]][skill-colima-url]
+[![docker][skill-docker-shield]][skill-conventionalcommits-url]
+
+Con el fin de simular el comportamiento de las APIs Users y Items (descritas en el enunciado), se utiliza la herramienta [Mountebank][skill-mountebank-url] la cual,  a través de impostores, permite simular las características de "Legacy" y aislamiento que se solicitan en el ejercicio.
+Se crea un archivo tipo bash, que lanza el contenedor con Mountebank desplegado localmente en el puerto 2525.
+- Se asume que los APIs de Users y Items responden con un statusCode 201 cuando se hace un POST y se crea la entidad exitosamente.
+- Se asume que los APIs de Users y Items en la invocación de los otros métodos (GET, PUT, DELETE) se responden un statusCode 200 con el detalle del resultado de la operación.
+- Se crean dos impostores que corresponden a los dos APIS de Users y Items con la estructura descrita a continuación. 
+```json
+{
+  "port": 4545,
+  "protocol": "http",
+  "defaultResponse": {
+    "statusCode": 400,
+    "body": "Bad Request",
+    "headers": {}
+  },
+  "stubs": [
+    {
+      "responses": [
+        {
+          "is": {
+            "statusCode": 201,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "userId": "0a38296474c2",
+              "name": "John Doe"
+            }
+          }
+        }
+      ],
+      "predicates": [
+        {
+          "deepEquals": {
+            "method": "POST",
+            "path": "/user"
+          }
+        }
+      ]
+    },
+    {
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "userId": "0a38296474c2",
+              "name": "John Doe"
+            }
+          }
+        }
+      ],
+      "predicates": [
+        {
+          "or": [
+            {
+              "deepEquals": {
+                "method": "GET",
+                "path": "/user"
+              }
+            },
+            {
+              "deepEquals": {
+                "method": "PUT",
+                "path": "/user"
+              }
+            },
+            {
+              "deepEquals": {
+                "method": "DELETE",
+                "path": "/user"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://shields.io/ -->
 
-[skill-mountebank-shield]: https://img.shields.io/badge/mountebank-2.9.1-blue
+[skill-mountebank-shield]: https://img.shields.io/badge/Mountebank-2.9.1-blue
 [skill-mountebank-url]: https://www.mbtest.org/docs/gettingStarted
 
-[skill-gitflow-shield]: https://img.shields.io/badge/gitflow-red
+[skill-gitflow-shield]: https://img.shields.io/badge/Git_Flow-red
 [skill-gitflow-url]: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow#:~:text=Gitflow%20is%20a%20legacy%20Git,software%20development%20and%20DevOps%20practices.
 
-[skill-conventionalcommits-shield]: https://img.shields.io/badge/conventionalcommits-1.0.0-pink
+[skill-conventionalcommits-shield]: https://img.shields.io/badge/Conventional_Commits-1.0.0-pink
 [skill-conventionalcommits-url]: https://www.conventionalcommits.org/es/v1.0.0/
+
+[skill-colima-shield]: https://img.shields.io/badge/Colima-0.7.5-orange
+[skill-colima-url]: https://github.com/abiosoft/colima
+
+[skill-docker-shield]: https://img.shields.io/badge/Docker_CE-24.0.6-yellow
+[skill-docker-url]: https://docs.docker.com/engine/install/
