@@ -24,6 +24,9 @@ MercadoLibre tiene dos APIs, la API de ítems y la API de usuarios. Son independ
 - Código en repositorio de las aplicaciones planteadas para el sistema **(adicional)**
 - Solución planteada desplegado en cloud **(adicional)**
 ---
+[![Mountebank][skill-mountebank-shield]][skill-mountebank-url]
+[![Gitflow][skill-gitflow-shield]][skill-gitflow-url]
+[![ConventionalCommits][skill-conventionalcommits-shield]][skill-conventionalcommits-url]
 > [!TIP]
 > En este archivo README encontrará texto entre comillas ("text") generalemnte hace referencia a términos que el autor decidió no traducir con el fin de conservar su significado dentro de la industria de TI.
 
@@ -38,7 +41,7 @@ La estrategia de "branching" que se usa en el proytecto es gitflow. Gitflow es u
 
 Este repositorio utiliza la especificación "Conventional commits" [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary).
 
-El commit debe tener un título que siga la siguiente especificación.
+El "commit" debe tener un título que siga la siguiente especificación.
 
 - `fix: ` prefijo en el título que indica que el PR es un "bug fix" y se debe generar un "PATCH".
 - `feat: ` prefijo en el título que indica que el PR es una característica o "feature" y un "MINOR release" debe ser generado.
@@ -53,10 +56,11 @@ Qué pasa con los "MAJOR release"? se debe agregar `!` al prefijo, algo como `fi
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://shields.io/ -->
 
-[skill-cloudformation-shield]: https://img.shields.io/badge/Cloudformation-2010.09.09-blue
-[skill-cloudformation-url]: https://aws.amazon.com/cloudformation/
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://shields.io/ -->
-
 [skill-mountebank-shield]: https://img.shields.io/badge/mountebank-2.9.1-blue
 [skill-mountebank-url]: https://www.mbtest.org/docs/gettingStarted
+
+[skill-gitflow-shield]: https://img.shields.io/badge/gitflow-red
+[skill-gitflow-url]: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow#:~:text=Gitflow%20is%20a%20legacy%20Git,software%20development%20and%20DevOps%20practices.
+
+[skill-conventionalcommits-shield]: https://img.shields.io/badge/conventionalcommits-1.0.0-pink
+[skill-conventionalcommits-url]: https://www.conventionalcommits.org/es/v1.0.0/
